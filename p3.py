@@ -100,7 +100,7 @@ class Human:
         car_indexes = f"{self.car.brand} car indexes"
         print(f"{car_indexes:^50}", "\n")
         print(f"Fuel - {self.car.fuel}")
-        print(f"Strength - {self.car.strenght}")
+        print(f"Strength - {self.car.strength}")
 
     def is_alive(self):
         if self.gladness <0:
@@ -132,10 +132,9 @@ class Human:
             self.work()
         elif dice == 3:
             print("Time to clean")
-            self.clean()
+            self.clean_home()
         elif dice == 4:
             print("Time to tread")
-            self.tread()
             self.shopping(manage="delicacies")
 
 
@@ -186,5 +185,5 @@ brand_of_car = {
 hum = Human(name="Vasya")
 
 for day in range(1, 8):
-    if hum.live(day) == False:
+    if not hum.live(day):
         break
