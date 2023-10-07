@@ -1,0 +1,47 @@
+import sqlite3
+
+# Підключаємося до бази даних
+
+conn = sqlite3.connect('weather.db')
+
+# Створюємо таблицю
+
+conn.execute('''CREATE TABLE IF NOT EXISTS temperature
+
+(date TEXT, time TEXT, temperature REAL)''')
+
+import requests
+
+from bs4 import BeautifulSoup
+
+from datetime import datetime
+
+# Завантажуємо сторінку з погодою
+
+page = requests.get("https://ua.sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D1%87%D0%B5%D1%80%D0%BD%D1%96%D0%B3%D1%96%D0%B2")
+
+# Розбираємо HTML-код сторінки
+
+soup = BeautifulSoup(page.content, 'html.parser')
+
+# Знаходимо елемент, що містить інформацію про температуру
+
+temperature = soup.find(class_='today-temp').get_text()
+
+# Отримуємо поточну дату та час
+
+now = datetime.now()
+
+date = now.strftime("%Y-%m-%d")
+
+time = now.strftime("%H:%M:%S")
+
+# Заносимо дані про температуру до бази даних
+
+conn.execute("INSERT INTO temperature (date, time, temperature) VALUES (?, ?, ?)", (date, time, temperature))
+
+conn.commit()
+
+# Закриваємо з'єднання з базою даних
+
+conn.close()
