@@ -1,0 +1,32 @@
+import colorama
+
+print(dir(colorama))
+
+import colorama
+
+help(colorama.init)
+['AnsiToWin32',
+ 'Back',
+ 'Cursor',
+ 'Fore',
+ 'Style',
+ '__builtins__',
+ '__cached__',
+ '__doc__',
+ '__file__',
+ '__loader__',
+ '__name__',
+ '__package__',
+ '__path__',
+ '__spec__',
+ '__version__',
+ 'ansi',
+ 'ansitowin32',
+ 'colorama_text',
+ 'deinit',
+ 'init',
+ 'initialise',
+ 'just_fix_windows_console',
+ 'reinit',
+ 'win32',
+ 'winterm']
